@@ -18,7 +18,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .nav-links a:hover{color:var(--gold)}
 .hero{min-height:100vh;padding-top:58px;background:var(--ink);display:flex;align-items:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,136,42,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(184,136,42,.06) 1px,transparent 1px);background-size:64px 64px}
-.hero::after{content:'';position:absolute;top:-15%;right:-8%;width:560px;height:560px;background:radial-gradient(circle,rgba(45,74,98,.35) 0%,transparent 65%);pointer-events:none}
 .hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:5rem 4rem;display:grid;grid-template-columns:1fr 360px;gap:5rem;align-items:center}
 .hero-pre{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;display:flex;align-items:center;gap:.7rem;animation:up .6s ease both}
 .hero-pre::before{content:'';width:1.8rem;height:1px;background:var(--gold)}
@@ -50,7 +49,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .nb-legend{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
 .legend-item{display:flex;align-items:center;gap:.4rem;font-size:.63rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .legend-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.dot-d{background:#4caf82}.dot-m{background:#b8882a}.dot-i{background:#5b8fc7}.dot-b{background:#8e6ab8}.dot-t{background:#c76b5b}
+.dot-d{background:#4caf82}.dot-m{background:#b8882a}.dot-b{background:#8e6ab8}.dot-t{background:#c76b5b}
 .num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05)}
 .row-label{grid-column:1/-1;padding:1.1rem 2rem;background:rgba(184,136,42,.04);border-top:1px solid rgba(184,136,42,.1);display:flex;align-items:center;gap:.8rem}
 .rl-icon{font-size:.9rem}
@@ -81,7 +80,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .approach{background:var(--ink);padding:5rem 4rem}
 .approach-heading{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);color:var(--white);margin-bottom:.6rem;line-height:1.2}
 .approach-sub{font-size:.9rem;color:rgba(255,255,255,.35);margin-bottom:3rem;max-width:500px;line-height:1.7}
-.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.approach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
 .ap-card{padding:2rem;border:1px solid rgba(255,255,255,.07);transition:border-color .3s}
 .ap-card:hover{border-color:rgba(184,136,42,.35)}
 .ap-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:rgba(184,136,42,.25);line-height:1;margin-bottom:.8rem}
@@ -104,7 +103,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .job-col-label{font-size:.62rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:1px solid var(--warm)}
 .job-col-items{list-style:none;display:flex;flex-direction:column;gap:.45rem}
 .job-col-items li{font-size:.82rem;line-height:1.6;color:var(--mid);padding-left:1rem;position:relative}
-.job-col-items li::before{content:'–';position:absolute;left:0;color:var(--gold)}
+.job-col-items li::before{content:'--';position:absolute;left:0;color:var(--gold)}
 .job-col-items li strong{color:var(--ink);font-weight:500}
 .job-tags{display:flex;flex-wrap:wrap;gap:.4rem}
 .jtag{font-size:.64rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:.22rem .65rem;background:rgba(0,0,0,.04);color:var(--mid);border:1px solid var(--warm)}
@@ -132,230 +131,41 @@ footer p{font-size:.72rem;color:rgba(255,255,255,.18);letter-spacing:.06em}
   footer{flex-direction:column;gap:.3rem;text-align:center;padding:1.2rem 2rem}
 }
 @media(max-width:600px){.lp-grid,.lp-layers,.approach-grid{grid-template-columns:1fr}.num-grid{grid-template-columns:1fr}}
-
-/* ═══════════════════════════════════════════
-   AMBIENT ANIMATIONS
-═══════════════════════════════════════════ */
-
-/* Slow drifting orbs — hero */
-@keyframes drift1 {
-  0%   { transform: translate(0,0) scale(1); }
-  33%  { transform: translate(40px,-30px) scale(1.08); }
-  66%  { transform: translate(-20px,50px) scale(.95); }
-  100% { transform: translate(0,0) scale(1); }
-}
-@keyframes drift2 {
-  0%   { transform: translate(0,0) scale(1); }
-  40%  { transform: translate(-50px,30px) scale(1.06); }
-  70%  { transform: translate(30px,-40px) scale(.97); }
-  100% { transform: translate(0,0) scale(1); }
-}
-@keyframes drift3 {
-  0%   { transform: translate(0,0) scale(1); }
-  50%  { transform: translate(25px,45px) scale(1.04); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-/* Slow gold gradient pulse on paper sections */
-@keyframes paperShift {
-  0%,100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
-
-/* Subtle grain flicker */
-@keyframes grainMove {
-  0%,100% { transform: translate(0,0); }
-  10%     { transform: translate(-1%,-1%); }
-  20%     { transform: translate(1%,1%); }
-  30%     { transform: translate(-1%,1%); }
-  40%     { transform: translate(1%,-1%); }
-  50%     { transform: translate(-1%,0); }
-  60%     { transform: translate(1%,0); }
-  70%     { transform: translate(0,1%); }
-  80%     { transform: translate(0,-1%); }
-  90%     { transform: translate(1%,1%); }
-}
-
-/* Gold line scan across num cards */
-@keyframes scanLine {
-  0%   { transform: translateX(-100%); opacity:0; }
-  10%  { opacity:.4; }
-  90%  { opacity:.4; }
-  100% { transform: translateX(100%); opacity:0; }
-}
-
-/* Soft pulse on gold borders */
-@keyframes borderPulse {
-  0%,100% { border-color: rgba(184,136,42,.12); }
-  50%      { border-color: rgba(184,136,42,.65); }
-}
-
-/* ── HERO AMBIENT ORBS ── */
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  will-change: transform;
-  mix-blend-mode: screen;
-}
-.hero-orb-1 {
-  width: 700px; height: 700px;
-  top: -15%; right: -8%;
-  background: radial-gradient(circle, rgba(184,136,42,.14) 0%, transparent 65%);
-  animation: drift1 22s ease-in-out infinite;
-}
-.hero-orb-2 {
-  width: 500px; height: 500px;
-  bottom: -10%; left: -5%;
-  background: radial-gradient(circle, rgba(45,60,75,.28) 0%, transparent 65%);
-  animation: drift2 28s ease-in-out infinite;
-}
-.hero-orb-3 {
-  width: 300px; height: 300px;
-  top: 30%; left: 35%;
-  background: radial-gradient(circle, rgba(184,136,42,.10) 0%, transparent 60%);
-  animation: drift3 18s ease-in-out infinite;
-}
-
-/* ── GRAIN OVERLAY ── */
-.grain {
-  position: fixed; inset: 0; z-index: 999;
-  pointer-events: none;
-  opacity: .032;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px 128px;
-  animation: grainMove 0.5s steps(1) infinite;
-}
-
-/* ── NUMBERS SECTION — ambient gold shimmer ── */
-.numbers-block {
-  position: relative;
-  background: var(--ink2);
-}
-.numbers-block::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 40% at 20% 50%, rgba(184,136,42,.09) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 60% at 80% 20%, rgba(120,100,60,.07) 0%, transparent 70%);
-  pointer-events: none;
-  animation: drift1 30s ease-in-out infinite;
-}
-
-/* ── NUM CARD — gold scan line on hover ── */
-.num-card { overflow: hidden; }
-.num-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(184,136,42,.14) 50%, transparent 60%);
-  transform: translateX(-100%);
-  pointer-events: none;
-}
-.num-card:hover::after {
-  animation: scanLine 0.7s ease forwards;
-}
-
-/* ── LEADERSHIP SECTION — warm paper ambient ── */
-.leadership {
-  background: linear-gradient(135deg, var(--paper) 0%, #e8e0d4 50%, var(--paper) 100%);
-  background-size: 300% 300%;
-  animation: paperShift 20s ease infinite;
-  position: relative;
-}
-.leadership::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 90% 10%, rgba(184,136,42,.10) 0%, transparent 60%);
-  pointer-events: none;
-  animation: drift2 25s ease-in-out infinite;
-}
-
-/* ── LEADERSHIP CARD hover — warm lift ── */
-.lp-card {
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.lp-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(184,136,42,.14);
-}
-
-/* ── APPROACH SECTION — deep dark ambient ── */
-.approach {
-  position: relative;
-  background: var(--ink);
-  overflow: hidden;
-}
-.approach::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 15% 80%, rgba(184,136,42,.11) 0%, transparent 65%),
-              radial-gradient(ellipse 50% 40% at 85% 20%, rgba(40,55,70,.32) 0%, transparent 60%);
-  pointer-events: none;
-  animation: drift3 26s ease-in-out infinite;
-}
-
-/* ── AP CARD — subtle border pulse ── */
-.ap-card {
-  animation: borderPulse 6s ease-in-out infinite;
-  animation-delay: calc(var(--i, 0) * 1.5s);
-}
-.ap-card:nth-child(1) { --i: 0; }
-.ap-card:nth-child(2) { --i: 1; }
-.ap-card:nth-child(3) { --i: 2; }
-.ap-card:hover { animation: none; border-color: rgba(184,136,42,.65); }
-
-/* ── HISTORY SECTION — paper with very faint warm shift ── */
-.history {
-  position: relative;
-  background: linear-gradient(160deg, var(--paper) 0%, #f0ebe2 60%, var(--paper) 100%);
-  background-size: 200% 200%;
-  animation: paperShift 28s ease infinite;
-}
-
-/* ── CONTACT SECTION — dark with gold bloom ── */
-.contact {
-  position: relative;
-  overflow: hidden;
-}
-.contact::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 600px; height: 300px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse, rgba(184,136,42,.12) 0%, transparent 65%);
-  pointer-events: none;
-  animation: drift1 20s ease-in-out infinite;
-}
-
-/* ── SIDEBAR BLOCKS — very subtle pulse ── */
-.sidebar-block {
-  transition: border-color .4s;
-}
-.sidebar-block:first-child {
-  animation: borderPulse 8s ease-in-out infinite;
-}
-
-/* ── NAV — faint gold shimmer on scroll (class added via JS) ── */
-nav.scrolled {
-  border-bottom-color: rgba(184,136,42,.25);
-  box-shadow: 0 1px 20px rgba(184,136,42,.04);
-}
-
-/* ── LAYER TITLE borders — slow gold breathe ── */
-.layer-title {
-  animation: borderPulse 7s ease-in-out infinite;
-  animation-delay: calc(var(--j,0) * 1.2s);
-}
-.lp-layer:nth-child(1) .layer-title { --j:0; }
-.lp-layer:nth-child(2) .layer-title { --j:1; }
-.lp-layer:nth-child(3) .layer-title { --j:2; }
-.lp-layer:nth-child(4) .layer-title { --j:3; }
-
-/* Remove old hero::after static orb — replaced by .hero-orb elements */
-.hero::after { display: none; }
-
+@keyframes drift1{0%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-20px,50px) scale(.95)}100%{transform:translate(0,0) scale(1)}}
+@keyframes drift2{0%{transform:translate(0,0) scale(1)}40%{transform:translate(-50px,30px) scale(1.06)}70%{transform:translate(30px,-40px) scale(.97)}100%{transform:translate(0,0) scale(1)}}
+@keyframes drift3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,45px) scale(1.04)}100%{transform:translate(0,0) scale(1)}}
+@keyframes paperShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes grainMove{0%,100%{transform:translate(0,0)}10%{transform:translate(-1%,-1%)}20%{transform:translate(1%,1%)}30%{transform:translate(-1%,1%)}40%{transform:translate(1%,-1%)}50%{transform:translate(-1%,0)}60%{transform:translate(1%,0)}70%{transform:translate(0,1%)}80%{transform:translate(0,-1%)}90%{transform:translate(1%,1%)}}
+@keyframes scanLine{0%{transform:translateX(-100%);opacity:0}10%{opacity:.4}90%{opacity:.4}100%{transform:translateX(100%);opacity:0}}
+@keyframes borderPulse{0%,100%{border-color:rgba(184,136,42,.12)}50%{border-color:rgba(184,136,42,.65)}}
+.hero-orb{position:absolute;border-radius:50%;pointer-events:none;will-change:transform;mix-blend-mode:screen}
+.hero-orb-1{width:700px;height:700px;top:-15%;right:-8%;background:radial-gradient(circle,rgba(184,136,42,.14) 0%,transparent 65%);animation:drift1 22s ease-in-out infinite}
+.hero-orb-2{width:500px;height:500px;bottom:-10%;left:-5%;background:radial-gradient(circle,rgba(45,60,75,.28) 0%,transparent 65%);animation:drift2 28s ease-in-out infinite}
+.hero-orb-3{width:300px;height:300px;top:30%;left:35%;background:radial-gradient(circle,rgba(184,136,42,.10) 0%,transparent 60%);animation:drift3 18s ease-in-out infinite}
+.grain{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.032;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:128px 128px;animation:grainMove 0.5s steps(1) infinite}
+.numbers-block{position:relative;background:var(--ink2)}
+.numbers-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 20% 50%,rgba(184,136,42,.09) 0%,transparent 70%),radial-gradient(ellipse 60% 60% at 80% 20%,rgba(120,100,60,.07) 0%,transparent 70%);pointer-events:none;animation:drift1 30s ease-in-out infinite}
+.num-card{overflow:hidden}
+.num-card::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(105deg,transparent 40%,rgba(184,136,42,.14) 50%,transparent 60%);transform:translateX(-100%);pointer-events:none}
+.num-card:hover::after{animation:scanLine 0.7s ease forwards}
+.leadership{background:linear-gradient(135deg,var(--paper) 0%,#e8e0d4 50%,var(--paper) 100%);background-size:300% 300%;animation:paperShift 20s ease infinite;position:relative}
+.leadership::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 90% 10%,rgba(184,136,42,.10) 0%,transparent 60%);pointer-events:none;animation:drift2 25s ease-in-out infinite}
+.lp-card{transition:transform .3s ease,box-shadow .3s ease}
+.lp-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(184,136,42,.14)}
+.approach{position:relative;background:var(--ink);overflow:hidden}
+.approach::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 80%,rgba(184,136,42,.11) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 85% 20%,rgba(40,55,70,.32) 0%,transparent 60%);pointer-events:none;animation:drift3 26s ease-in-out infinite}
+.ap-card{animation:borderPulse 6s ease-in-out infinite;animation-delay:calc(var(--i,0) * 1.5s)}
+.ap-card:nth-child(1){--i:0}.ap-card:nth-child(2){--i:1}.ap-card:nth-child(3){--i:2}.ap-card:nth-child(4){--i:3}
+.ap-card:hover{animation:none;border-color:rgba(184,136,42,.65)}
+.history{position:relative;background:linear-gradient(160deg,var(--paper) 0%,#f0ebe2 60%,var(--paper) 100%);background-size:200% 200%;animation:paperShift 28s ease infinite}
+.contact{position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:300px;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(184,136,42,.12) 0%,transparent 65%);pointer-events:none;animation:drift1 20s ease-in-out infinite}
+.sidebar-block{transition:border-color .4s}
+.sidebar-block:first-child{animation:borderPulse 8s ease-in-out infinite}
+nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba(184,136,42,.04)}
+.layer-title{animation:borderPulse 7s ease-in-out infinite;animation-delay:calc(var(--j,0) * 1.2s)}
+.lp-layer:nth-child(1) .layer-title{--j:0}.lp-layer:nth-child(2) .layer-title{--j:1}.lp-layer:nth-child(3) .layer-title{--j:2}.lp-layer:nth-child(4) .layer-title{--j:3}
+.hero::after{display:none}
 </style>
 </head>
 <body>
@@ -401,124 +211,277 @@ nav.scrolled {
         <div class="sb-fact"><span class="sb-key">Markets</span><span class="sb-val">GB FR RO NL +</span></div>
         <div class="sb-fact"><span class="sb-key">Location</span><span class="sb-val">Brisbane / Sydney / Remote</span></div>
       </div>
-
     </div>
   </div>
 </section>
 
+<!-- NUMBERS -->
 <section class="numbers-block" id="numbers">
   <div class="nb-header reveal">
     <div>
-      <div class="eyebrow-line" style="margin-bottom:.5rem"><span></span>Kindred Group &middot; FDJ United &middot; 2025&ndash;Present</div>
+      <div class="eyebrow-line" style="margin-bottom:.5rem"><span></span>Kindred Group &middot; FDJ United &middot; 2022&ndash;Present</div>
       <h2 class="nb-heading">THE NUMBERS</h2>
     </div>
     <div class="nb-legend">
       <div class="legend-item"><div class="legend-dot dot-d"></div>Delivered</div>
-      <div class="legend-item"><div class="legend-dot dot-m"></div>Modelled w/ metrics team</div>
+      <div class="legend-item"><div class="legend-dot dot-m"></div>Modelled w/ analytics team</div>
       <div class="legend-item"><div class="legend-dot dot-b"></div>Benchmarked</div>
       <div class="legend-item"><div class="legend-dot dot-t"></div>Team / Org impact</div>
     </div>
   </div>
   <div class="num-grid">
+
     <div class="row-label"><span class="rl-icon">&#x1F4C8;</span><span class="rl-text">Commercial</span></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div><div class="num-big">10&times;</div><div class="num-label">BetBuilder margin vs singles</div><div class="num-context">Worked with the metrics team to understand the margin ratio between product tiers &mdash; frames every BB design decision as a commercial one, not just a UX one.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div><div class="num-big">2&ndash;3%</div><div class="num-label">Singles migration target to high-margin products</div><div class="num-context">Related bets UX, BB placement, and upsell moments designed to shift volume into higher-margin products. Multi-million gross win opportunity modelled with the metrics team.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">2&times;&rarr;4&times;</div><div class="num-label">BetBuilder ROI &mdash; current to next phase</div><div class="num-context">Enhancement strategy validated at 2&times; ROI. Next phase modelled at 4&times;. Cannibalisation risk of singles derisk built in via user-gated content &mdash; singles users protected by design, not policy.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div><div class="num-big">+5%</div><div class="num-label">ARPU per 1% product mix shift</div><div class="num-context">Each percentage point shifted from singles to higher-margin products generates material ARPU uplift across six regulated markets &mdash; modelled with analytics and metrics teams.</div></div>
-    <div class="row-label"><span class="rl-icon">&#x2699;&#xFE0F;</span><span class="rl-text">Technical &amp; Delivery</span></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">1 Qtr</div><div class="num-label">Design ahead of engineering</div><div class="num-context">Arrived with design 2 weeks ahead. Embedded into leadership planning cycles &mdash; now one full quarter ahead. Creates space for technical feasibility conversations before architecture is locked.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">&ndash;20%</div><div class="num-label">Handover time reduced</div><div class="num-context">Discovery &rarr; Test &rarr; Spec &rarr; Dev Support model keeps design active through build. Fewer defects, less rework. Structured ticket model separates exploration from build-ready work.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">First</div><div class="num-label">WCAG embedded in Acceptance Criteria</div><div class="num-context">Accessibility requirements in ACs for the first time &mdash; closing years of accumulated debt. Makes a11y a delivery gate, not a retro audit. Targeting 50% app coverage as baseline.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">Live</div><div class="num-label">Promotions engine across 4 markets</div><div class="num-context">Front-end and back-end design strategy across Uniboost, CMS/Playbook, BFF, and multi-jurisdiction regulatory constraints &mdash; coordinated with engineering and compliance to ship across GB, FR, RO, NL.</div></div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">2&times;</div>
+      <div class="num-label">BetBuilder usage &mdash; placement change alone</div>
+      <div class="num-context">Repositioning the Popular BetBuilder widget to a primary surface doubled usage without changing the product. The intervention was placement, not features &mdash; a commercial argument built from add-to-betslip data across 80+ eligible matches.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div>
+      <div class="num-big">4&times;</div>
+      <div class="num-label">BetBuilder usage &mdash; next phase target</div>
+      <div class="num-context">Event page expansion combined with a social proof mechanism &mdash; a popularity counter surfacing real add-to-betslip volume &mdash; modelled at 4&times; current usage. Business case benchmarked against Betfair A/B results (+7% CTR, 96% confidence) and Qubit/PwC meta-analysis of 6,700 experiments.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div>
+      <div class="num-big">48&times;</div>
+      <div class="num-label">Story point efficiency vs comparable widget build</div>
+      <div class="num-context">The social proof counter at ~10 story points is projected to deliver significant incremental gross win. The previous comparable widget consumed ~60 story points and generates ~40 clicks per week. That ratio was the centrepiece of a formal decision review document challenging business pushback.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-b"></div>Benchmarked</div>
+      <div class="num-big">80&ndash;85%</div>
+      <div class="num-label">Carousel engagement concentrated in positions 1&ndash;2</div>
+      <div class="num-context">Production analytics showing positions 1&ndash;2 driving 80&ndash;85% of clicks regardless of how many items are shown. Used to reduce options from 7&ndash;8 to 3&ndash;4 &mdash; cutting DOM load, improving page speed. A UX simplification that became a technical performance and commercial argument simultaneously.</div>
+    </div>
+
+    <div class="row-label"><span class="rl-icon">&#x2699;&#xFE0F;</span><span class="rl-text">Operating Model &amp; Delivery</span></div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">1 Qtr</div>
+      <div class="num-label">Design ahead of engineering &mdash; sustained</div>
+      <div class="num-context">Arrived with design 2 weeks ahead. Embedded into leadership planning cycles &mdash; now one full quarter ahead. Dual-track swimlanes protect the pipeline while current-quarter work ships. Creates space for technical feasibility conversations before architecture is locked.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">Full system</div>
+      <div class="num-label">Design operating model built from scratch</div>
+      <div class="num-context">Jira-first source of truth. Epic to 3-ticket standard (Discovery / Design / Dev Support). Gate A/B/C quality checkpoints. Stage 4 production impact loop as part of definition of done. Context &middot; Link &middot; Ask async protocol adopted across AU/SE/FR/RO timezones. Not a process document &mdash; a working system adopted org-wide.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">&ndash;20%</div>
+      <div class="num-label">Handover time reduced</div>
+      <div class="num-context">Discovery to Test to Spec to Dev Support model keeps design active through build. Fewer defects, less rework. Structured ticket model separates exploration from build-ready work &mdash; engineering always knows exactly what stage design is at.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">First</div>
+      <div class="num-label">WCAG embedded in Acceptance Criteria</div>
+      <div class="num-context">Accessibility requirements in ACs for the first time &mdash; closing years of accumulated debt. Makes a11y a delivery gate, not a retro audit. Targeting 50% app coverage as baseline. Practical spot-check protocol at Stage 3, not theoretical compliance.</div>
+    </div>
+
+    <div class="row-label"><span class="rl-icon">&#x1F4CA;</span><span class="rl-text">Measurement &amp; Systems Architecture</span></div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">L0&ndash;L3</div>
+      <div class="num-label">Depth-stratified analytics framework</div>
+      <div class="num-context">Defined how the organisation measures design ROI &mdash; a surface taxonomy anchored to navigation depth (Discovery to Sport to Event to Market) rather than static pages. Separates Template effectiveness from Widget effectiveness in attribution. Reusable across any sport or featured event with a metadata filter only. No rebuild per event.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">5 pillars</div>
+      <div class="num-label">Promotions engine &mdash; engineering once, CRM-operated forever</div>
+      <div class="num-context">Designed a five-pillar promotion architecture separating token mechanics (engineering-once, versioned, locked) from audience segments, qualification missions, bet targeting, and promo assembly (CRM-operated, zero code per campaign). Removes engineering from every new promotion after the initial token build. Live across GB, FR, RO, NL.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">Decision Map</div>
+      <div class="num-label">Design authority held at exec level &mdash; formally</div>
+      <div class="num-context">During a high-stakes FR market launch, presented a formal Decision Map to Heads of and Exec &mdash; four open topics, stakeholder ask vs PD position vs proposed v1 decision on each. Held: single card template, MoTD vertical, density via token over variant sprawl. Trade-off rule documented in writing: if something is added, something else is removed or the date moves.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">Live</div>
+      <div class="num-label">Bet type capability matrix &amp; friction event taxonomy</div>
+      <div class="num-context">Mapped which bet types can be placed natively at each depth vs where they require lateral navigation. Defined friction events and cross-level shortcut instrumentation requirements. Handed to Experience Analytics as the instrumentation brief &mdash; design defining how the organisation measures itself.</div>
+    </div>
+
     <div class="row-label"><span class="rl-icon">&#x1F465;</span><span class="rl-text">Customer &amp; Research</span></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">&ndash;25%</div><div class="num-label">Testing drop-off reduced across UK, RO &amp; FR markets</div><div class="num-context">Enabled and delivered unmoderated testing infrastructure across UK and Romania, running alongside French market work &mdash; three regulated markets tested simultaneously, not sequentially. Redesigning question structure reduced participant drop-off by 25%, improving data quality per test and changing how stakeholders evaluated testing ROI.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-b"></div>Benchmarked</div><div class="num-big">25%</div><div class="num-label">Users adding to betslip from homepage</div><div class="num-context">Analytics showed homepage was already a conversion surface &mdash; 15% placed a bet from it. Reframed page priority across product and content teams without a lengthy research cycle.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-b"></div>Benchmarked</div><div class="num-big">80&ndash;85%</div><div class="num-label">Carousel clicks concentrated in positions 1&ndash;2</div><div class="num-context">Positions 1&ndash;2 drive 80&ndash;85% of clicks regardless of how many items are shown. Evidence used to reduce carousels from 7&ndash;8 options to 3&ndash;4 &mdash; cutting DOM load, improving page speed and time-on-page, which directly feeds conversion. A UX simplification that became a technical performance and commercial argument simultaneously.</div></div>
-    <div class="num-card reveal"><div class="num-tag"><div class="num-tag-dot dot-t"></div>Team impact</div><div class="num-big">40+</div><div class="num-label">Workshops across trading, risk, growth, engineering</div><div class="num-context">Different language per room &mdash; same design direction. MoSCoW prioritisation and hero journey scoring used to resolve conflicting priorities without escalating to leadership.</div></div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">10+</div>
+      <div class="num-label">Research studies launched &mdash; never done before for UK</div>
+      <div class="num-context">Spearheaded the first structured research program for the UK sportsbook product &mdash; equivalent to what existed in FR, built from scratch. 10+ unmoderated studies in the year since launch, each running 100+ participants. A capability that did not exist before, now a standard part of how product decisions are validated.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">100+</div>
+      <div class="num-label">Participants per study &mdash; cross-market agreement on tooling</div>
+      <div class="num-context">Before any study launched, drove formal agreement with teams across all markets on Maze as the shared testing platform &mdash; faster execution, consistent methodology, comparable data across GB, FR, RO, NL. The infrastructure agreement came first; the research scale followed.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-b"></div>Benchmarked</div>
+      <div class="num-big">25%</div>
+      <div class="num-label">Users adding to betslip from homepage</div>
+      <div class="num-context">Analytics showed homepage was already a conversion surface &mdash; 15% placed a bet directly from it. Reframed page priority across product and content teams without a lengthy research cycle. Data already existed &mdash; the work was making it visible and actionable to the right people.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-t"></div>Team impact</div>
+      <div class="num-big">9</div>
+      <div class="num-label">Hero journeys &rarr; PCTs &mdash; design drove product strategy for the first time</div>
+      <div class="num-context">Survey with internal Trading, Ops, and Risk teams identified 9 hero journeys across the back-office platform. Ran 3 workshops (3 journeys each) writing PCTs directly from real user problems &mdash; not assumptions. Design had never driven PCTs for this platform before. Problems became the backlog.</div>
+    </div>
+
   </div>
 </section>
 
+<!-- LEADERSHIP -->
 <section class="leadership" id="leadership">
   <div class="lp-intro reveal">
     <h2>Proof of leadership,<br>not just strategy</h2>
-    <p>Head of Design roles ask whether you can lead people, not just own a product surface. Here is the direct answer.</p>
+    <p>Head of Design roles ask whether you can lead people, build systems, and hold a position under pressure &mdash; not just own a product surface. Here is the direct answer.</p>
   </div>
   <div class="lp-grid">
-    <div class="lp-card reveal"><div class="lp-num">20+</div><div class="lp-label">Designers mentored</div><div class="lp-desc">Across Kindred, NBN, and Tabcorp. Multiple promotions to Senior and Lead roles. Skill matrices, tailored progression plans, and structured performance assessments run against defined benchmarks &mdash; not just annual reviews.</div></div>
-    <div class="lp-card reveal"><div class="lp-num">0&rarr;1</div><div class="lp-label">Design practice built from scratch</div><div class="lp-desc">At both Kindred and NBN I arrived without a functioning design ops infrastructure. Built Jira and Confluence templates, documentation standards, delivery governance, and team rituals from nothing &mdash; adopted org-wide within months.</div></div>
-    <div class="lp-card reveal"><div class="lp-num">3</div><div class="lp-label">Delivery lanes introduced</div><div class="lp-desc">Discovery, Design Delivery, and Dev Support &mdash; a structured ticket model giving engineering, product, and design shared maturity expectations across the pipeline. Reduced handover friction and made design work visible at the right level.</div></div>
-    <div class="lp-card reveal"><div class="lp-num">6</div><div class="lp-label">Regulated markets governed simultaneously</div><div class="lp-desc">GB, FR, RO, NL and beyond. Each with different regulatory constraints. Maintained a single design direction while adapting research framing, ACs, and feature scope per jurisdiction &mdash; without slowing delivery cadence.</div></div>
-    <div class="lp-card reveal"><div class="lp-num">40+</div><div class="lp-label">Workshops — and the hard conversations to protect them</div><div class="lp-desc">Ran workshops across Trading, Risk, Ops, CRM, Growth, Engineering, and Compliance. Made the deliberate call to exclude managers and heads of from user research sessions to protect data quality &mdash; then had the direct conversations explaining why their presence would bias findings. MoSCoW and hero journey scoring used to resolve priority conflicts without escalation.</div></div>
-    <div class="lp-card reveal"><div class="lp-num">0</div><div class="lp-label">Team turnover during app redesign</div><div class="lp-desc">Full-scale app redesign at Tabcorp under a fixed launch deadline across multiple squads. Zero team turnover &mdash; maintained morale, output quality, and cross-squad alignment throughout a high-pressure multi-month programme.</div></div>
+    <div class="lp-card reveal">
+      <div class="lp-num">20+</div>
+      <div class="lp-label">Designers mentored</div>
+      <div class="lp-desc">Across sportsbook, telco, and wagering. Multiple promotions to Senior and Lead roles. Skill matrices, tailored progression plans, and structured performance assessments run against defined benchmarks &mdash; not just annual reviews.</div>
+    </div>
+    <div class="lp-card reveal">
+      <div class="lp-num">0&rarr;1</div>
+      <div class="lp-label">Design operating system &mdash; not just templates</div>
+      <div class="lp-desc">At both my current role and NBN I arrived without delivery infrastructure. What I built was a complete operating model: Jira-first source of truth, 3-ticket standard, dual-track swimlanes, Gate A/B/C checkpoints, Stage 4 production impact loop, and an async protocol across AU/SE/FR/RO timezones. Adopted org-wide. Now the default way design work moves.</div>
+    </div>
+    <div class="lp-card reveal">
+      <div class="lp-num">3</div>
+      <div class="lp-label">Delivery swimlanes introduced</div>
+      <div class="lp-desc">Discovery, Design Delivery, and Dev Support &mdash; a structured ticket model giving engineering, product, and design shared maturity expectations across the pipeline. Reduced handover friction and made design work visible to leadership at the right granularity.</div>
+    </div>
+    <div class="lp-card reveal">
+      <div class="lp-num">6</div>
+      <div class="lp-label">Regulated markets governed simultaneously</div>
+      <div class="lp-desc">GB, FR, RO, NL and beyond. Each with different regulatory constraints. Maintained a single design direction while adapting research framing, ACs, and feature scope per jurisdiction &mdash; without slowing delivery cadence.</div>
+    </div>
+    <div class="lp-card reveal">
+      <div class="lp-num">Held</div>
+      <div class="lp-label">Design authority at exec level &mdash; formally documented</div>
+      <div class="lp-desc">During a high-stakes FR market launch, presented a formal Decision Map to Heads of and Exec. Four topics, four positions, four documented decisions. Scope-for-scope trade rule enforced in writing. The Virtuals and Watch &amp; Bet example &mdash; which had already cost 15&ndash;20 design hours without shipping value &mdash; was the evidence used to hold the line.</div>
+    </div>
+    <div class="lp-card reveal">
+      <div class="lp-num">0</div>
+      <div class="lp-label">Team turnover during app redesign</div>
+      <div class="lp-desc">Full-scale app redesign at Tabcorp under a fixed launch deadline across multiple squads. Zero team turnover &mdash; maintained morale, output quality, and cross-squad alignment throughout a high-pressure multi-month programme.</div>
+    </div>
   </div>
   <div class="lp-map reveal">
     <div class="lp-map-title">Designers are the glue &mdash; this is what that looks like in practice</div>
     <div class="lp-layers">
       <div class="lp-layer"><div class="layer-title">Customer layer</div><ul class="layer-items"><li>User researchers</li><li>CRM teams</li><li>UX specialists</li><li>Unmoderated / A/B testing</li><li>Behavioural analytics</li></ul></div>
-      <div class="lp-layer"><div class="layer-title">Commercial layer</div><ul class="layer-items"><li>Heads of Growth</li><li>Product leadership</li><li>Analytics / metrics teams</li><li>CRM strategy</li><li>ARPU and margin modelling</li></ul></div>
+      <div class="lp-layer"><div class="layer-title">Commercial layer</div><ul class="layer-items"><li>Heads of Growth</li><li>Product leadership</li><li>Analytics / metrics teams</li><li>CRM strategy</li><li>Gross win modelling</li></ul></div>
       <div class="lp-layer"><div class="layer-title">Technical layer</div><ul class="layer-items"><li>Back-end engineering</li><li>BFF / API teams</li><li>CMS / platform architects</li><li>Firebase / feature flags</li><li>Tech feasibility sessions</li></ul></div>
       <div class="lp-layer"><div class="layer-title">Risk layer</div><ul class="layer-items"><li>Compliance teams</li><li>Regulatory advisors</li><li>Responsible Gambling</li><li>Legal / market requirements</li><li>Research framing for sign-off</li></ul></div>
     </div>
   </div>
 </section>
 
+<!-- APPROACH -->
 <section class="approach" id="approach">
   <h2 class="approach-heading reveal">How I lead</h2>
-  <p class="approach-sub reveal">Three principles that run through everything above &mdash; and explain why the work holds up across different domains.</p>
+  <p class="approach-sub reveal">Four principles that run through everything above &mdash; and explain why the work holds up across different domains.</p>
   <div class="approach-grid">
-    <div class="ap-card reveal"><div class="ap-num">01</div><div class="ap-title">Connect the dots between people who don&rsquo;t naturally talk to each other</div><p class="ap-body">I see design as the glue between commercial strategy, technical delivery, customer behaviour, and compliance. None of those teams have the same language or the same incentives &mdash; and most of the time, <strong>nobody is connecting what they know into a single product direction</strong>. That&rsquo;s the job. Not just running workshops, but synthesising what comes out of them into something engineering can build and leadership can stand behind.</p></div>
-    <div class="ap-card reveal"><div class="ap-num">02</div><div class="ap-title">Take things from 0 to 1 in real environments, not ideal ones</div><p class="ap-body">The best design work I&rsquo;ve done has happened inside constraints &mdash; regulatory, technical, organisational. I don&rsquo;t wait for the perfect conditions. I work out <strong>the smallest thing that can go live and prove value</strong>, phase the rest, and use each release to generate the evidence that earns the next one. A/B tests, overnight unmoderated studies, staged rollouts &mdash; the method fits the environment, not the textbook.</p></div>
-    <div class="ap-card reveal"><div class="ap-num">03</div><div class="ap-title">Let the evidence earn the next phase</div><p class="ap-body">I don&rsquo;t pitch big design visions and ask for trust. I <strong>design the first phase to generate the data that justifies the second</strong>. When stakeholders see real metrics moving &mdash; conversion, drop-off, margin, time-on-page &mdash; the conversation shifts from &ldquo;should we do this&rdquo; to &ldquo;how fast can we scale it.&rdquo; That&rsquo;s when design gets a real seat at the table.</p></div>
+    <div class="ap-card reveal">
+      <div class="ap-num">01</div>
+      <div class="ap-title">Connect the dots between people who don&rsquo;t naturally talk to each other</div>
+      <p class="ap-body">I see design as the glue between commercial strategy, technical delivery, customer behaviour, and compliance. None of those teams have the same language or the same incentives &mdash; and most of the time, <strong>nobody is connecting what they know into a single product direction</strong>. That&rsquo;s the job. Not just running workshops, but synthesising what comes out of them into something engineering can build and leadership can stand behind.</p>
+    </div>
+    <div class="ap-card reveal">
+      <div class="ap-num">02</div>
+      <div class="ap-title">Take things from 0 to 1 in real environments, not ideal ones</div>
+      <p class="ap-body">The best design work I&rsquo;ve done has happened inside constraints &mdash; regulatory, technical, organisational. I don&rsquo;t wait for the perfect conditions. I work out <strong>the smallest thing that can go live and prove value</strong>, phase the rest, and use each release to generate the evidence that earns the next one. A/B tests, overnight unmoderated studies, staged rollouts &mdash; the method fits the environment, not the textbook.</p>
+    </div>
+    <div class="ap-card reveal">
+      <div class="ap-num">03</div>
+      <div class="ap-title">Let the evidence earn the next phase</div>
+      <p class="ap-body">I don&rsquo;t pitch big design visions and ask for trust. I <strong>design the first phase to generate the data that justifies the second</strong>. When stakeholders see real metrics moving &mdash; conversion, drop-off, gross win, time-on-page &mdash; the conversation shifts from &ldquo;should we do this&rdquo; to &ldquo;how fast can we scale it.&rdquo; That&rsquo;s when design gets a real seat at the table.</p>
+    </div>
+    <div class="ap-card reveal">
+      <div class="ap-num">04</div>
+      <div class="ap-title">Build the measurement model before the product ships</div>
+      <p class="ap-body">I don&rsquo;t wait for analytics to tell me what to track. I define the surface taxonomy, the friction events to instrument, and the conversion logic per bet type <strong>before the first sprint starts</strong>. Design decisions should generate evidence &mdash; but only if you set up the measurement architecture in advance. That&rsquo;s what makes the next decision faster and the next proposal harder to dismiss.</p>
+    </div>
   </div>
 </section>
 
+<!-- HISTORY -->
 <section class="history" id="history">
   <div class="eyebrow-line reveal"><span></span>Work History</div>
   <h2 class="history-heading reveal">CAREER</h2>
   <p class="history-sub reveal">Detail for the conversation &mdash; enough to verify the numbers above and generate the right questions.</p>
+
   <div class="job reveal">
     <div class="job-meta">
-      <div class="job-period">2025 &ndash; Present</div>
+      <div class="job-period">2022 &ndash; Present</div>
       <div class="job-co">Kindred Group &middot; FDJ United</div>
       <div class="job-title">Product Design Manager</div>
     </div>
     <div class="job-body">
-      <h3 class="job-headline">Design strategy across sportsbook's highest-margin surfaces</h3>
-      <div class="job-context">Six regulated markets &middot; Betslip &middot; BetBuilder &middot; Promotions Engine &middot; Event Cards &middot; Back-office tooling &middot; Distributed international team</div>
+      <h3 class="job-headline">Design operating system, measurement architecture, and commercial design across a global sportsbook</h3>
+      <div class="job-context">Six regulated markets &middot; Betslip &middot; BetBuilder &middot; Promotions Engine &middot; Analytics Framework &middot; Event Cards &middot; Distributed international team (AU, SE, FR, RO)</div>
       <div class="job-cols">
         <div class="job-col">
-          <div class="job-col-label">Commercial</div>
+          <div class="job-col-label">Commercial &amp; Product</div>
           <ul class="job-col-items">
-            <li>BetBuilder enhancement &mdash; <strong>2&times; ROI validated, 4&times; next phase</strong>. Cannibalisation derisk via user-gated content</li>
-            <li>Related bets UX targeting <strong>2&ndash;3% singles migration</strong> &mdash; multi-million gross win opportunity modelled with metrics team</li>
-            <li>Promotions engine &mdash; Uniboost, contextualised surfacing, multi-jurisdiction constraints across GB / FR / RO / NL</li>
-            <li>Homepage reframed as conversion surface: <strong>25% add-to-betslip, 15% bet placement</strong> from analytics evidence</li>
-            <li>Carousel data (positions 1&ndash;2 driving 80&ndash;85% of clicks) used to reduce options from 7&ndash;8 to 3&ndash;4 &mdash; cutting DOM load, improving time-on-page, and connecting a UX simplification directly to a conversion and page performance argument</li>
+            <li>BetBuilder placement change delivered <strong>2&times; usage increase</strong>. Next phase designed at 4&times; via event page expansion and social proof mechanism &mdash; business case from production data, 48&times; more efficient per story point than comparable widget build</li>
+            <li>Social proof counter: challenged business pushback with <strong>Betfair A/B result (+7% CTR, 96% confidence)</strong> &mdash; formal decision review document separating value, implementation, and prioritisation questions</li>
+            <li>Promotions engine: <strong>five-pillar architecture</strong> removing engineering from every new campaign after initial token build &mdash; live across GB, FR, RO, NL</li>
+            <li>FR market launch: formal <strong>Decision Map to Heads of and Exec</strong> holding single card template, MoTD vertical, density-via-token &mdash; scope-for-scope trade rule documented and enforced</li>
+            <li>Homepage reframed as conversion surface: <strong>25% add-to-betslip, 15% bet placement</strong> from analytics evidence alone</li>
           </ul>
         </div>
         <div class="job-col">
-          <div class="job-col-label">Technical &amp; Operational</div>
+          <div class="job-col-label">Operating Model &amp; Systems</div>
           <ul class="job-col-items">
-            <li>Fluent across BFF, back-end services, CMS/Playbook, Firebase, and feature flags &mdash; in tech planning rooms before architecture is locked</li>
-            <li><strong>1 quarter ahead of engineering</strong> from 2 weeks on arrival</li>
-            <li>Discovery &rarr; Test &rarr; Spec &rarr; Dev Support &mdash; <strong>&ndash;20% handover time</strong>, fewer production defects</li>
-            <li>Jira / Confluence practice built from scratch &mdash; governance, templates, maturity visibility adopted org-wide</li>
-            <li>First <strong>WCAG a11y in Acceptance Criteria</strong> &mdash; targeting 50% app coverage</li>
+            <li>Built full design operating model from scratch: <strong>Jira-first, Epic to 3-ticket standard, dual-track swimlanes, Gate A/B/C, Stage 4 production impact loop</strong></li>
+            <li>Design runs <strong>one full quarter ahead of engineering</strong>, up from 2 weeks on arrival &mdash; <strong>&ndash;20% handover time</strong>, fewer production defects</li>
+            <li>Authored <strong>depth-stratified analytics framework</strong> (L0&ndash;L3 taxonomy, Template vs Widget attribution, Bet Type Capability Matrix, friction event taxonomy) &mdash; handed to Experience Analytics as the instrumentation brief</li>
+            <li>Fluent across BFF, CMS/Playbook, Firebase, and feature flags &mdash; in tech planning rooms before architecture is locked</li>
+            <li>First <strong>WCAG a11y in Acceptance Criteria</strong> across the product &mdash; targeting 50% app coverage</li>
           </ul>
         </div>
         <div class="job-col">
           <div class="job-col-label">People &amp; Research</div>
           <ul class="job-col-items">
-            <li>Distributed team managed (Lead + Senior designers) &mdash; progression frameworks, performance assessments, design-ahead rhythm</li>
-            <li>Enabled unmoderated testing across <strong>UK, Romania, and France simultaneously</strong> &mdash; three regulated markets in parallel, not sequentially. Excluded managers and heads of from sessions to protect data quality, then had the direct conversations to explain why &mdash; a decision that shifted stakeholder perspective on testing ROI and contributed to the 25% drop-off reduction through cleaner question design</li>
-            <li><strong>40+ stakeholder workshops</strong> across Trading, Risk, Ops, CRM, Growth, Engineering</li>
+            <li>Distributed team managed (Lead + Senior designers) &mdash; skill matrices, progression frameworks, design-ahead rhythm</li>
+            <li>Spearheaded the <strong>first structured research program for UK sportsbook</strong> &mdash; 10+ unmoderated studies (100+ participants each) launched in year one. Drove cross-market agreement on Maze as the shared testing platform before any study launched</li>
+            <li><strong>Multiple studies including n=166</strong> on Related Bets placement &mdash; comprehension failure rate reframed as RG concern, escalated to stakeholders with formal recommendation</li>
+            <li>Survey with Trading, Ops &amp; Risk teams identified <strong>9 hero journeys</strong> &mdash; 3 workshops (3 journeys each) wrote PCTs from real user problems. First time design drove PCTs for this platform</li>
             <li>AI tooling embedded across documentation, synthesis, and stakeholder communication</li>
           </ul>
         </div>
       </div>
-      <div class="job-tags"><span class="jtag">iGaming</span><span class="jtag">BetBuilder</span><span class="jtag">DesignOps</span><span class="jtag">a11y</span><span class="jtag">Regulated Markets</span><span class="jtag">BFF / Back-end</span><span class="jtag">AI-augmented</span></div>
+      <div class="job-tags"><span class="jtag">iGaming</span><span class="jtag">BetBuilder</span><span class="jtag">DesignOps</span><span class="jtag">Analytics Framework</span><span class="jtag">a11y</span><span class="jtag">Regulated Markets</span><span class="jtag">BFF / Back-end</span><span class="jtag">Promotions Engine</span><span class="jtag">AI-augmented</span></div>
     </div>
   </div>
+
   <div class="job reveal">
     <div class="job-meta">
       <div class="job-period">2023 &ndash; 2025</div>
@@ -526,7 +489,7 @@ nav.scrolled {
       <div class="job-title">Lead Digital CX Designer</div>
     </div>
     <div class="job-body">
-      <h3 class="job-headline">Built the design practice for Australia's national broadband network</h3>
+      <h3 class="job-headline">Built the design practice for Australia&rsquo;s national broadband network</h3>
       <div class="job-context">Token design system &middot; Journey benchmarking &middot; B2B2C ISP/RSP &middot; Technology, Product, CX, Marketing</div>
       <div class="job-cols">
         <div class="job-col">
@@ -557,6 +520,7 @@ nav.scrolled {
       <div class="job-tags"><span class="jtag">Design System</span><span class="jtag">Telco</span><span class="jtag">WCAG</span><span class="jtag">Journey Benchmarking</span><span class="jtag">B2B2C</span><span class="jtag">Python</span></div>
     </div>
   </div>
+
   <div class="job reveal">
     <div class="job-meta">
       <div class="job-period">2019 &ndash; 2023</div>
@@ -564,7 +528,7 @@ nav.scrolled {
       <div class="job-title">Lead / Senior Product Designer</div>
     </div>
     <div class="job-body">
-      <h3 class="job-headline">Design leadership across Australia's largest wagering company</h3>
+      <h3 class="job-headline">Design leadership across Australia&rsquo;s largest wagering company</h3>
       <div class="job-context">Multi-squad &middot; App redesign &middot; Racing Feeds &middot; ARPU improvement &middot; Figma org migration</div>
       <div class="job-cols">
         <div class="job-col">
@@ -592,6 +556,7 @@ nav.scrolled {
       <div class="job-tags"><span class="jtag">Wagering</span><span class="jtag">ARPU</span><span class="jtag">App Redesign</span><span class="jtag">Figma Org</span><span class="jtag">Multi-squad</span><span class="jtag">A/B Testing</span></div>
     </div>
   </div>
+
   <div class="job reveal">
     <div class="job-meta">
       <div class="job-period">2012 &ndash; 2019</div>
@@ -628,9 +593,10 @@ nav.scrolled {
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner reveal">
-    <h2 class="contact-big">If this resonates,<br><em>let's go deeper.</em></h2>
+    <h2 class="contact-big">If this resonates,<br><em>let&rsquo;s go deeper.</em></h2>
     <p class="contact-note">The numbers on this page are a starting point. The work behind them &mdash; the methodology, the stakeholder conversations, the decisions that didn&rsquo;t make the page &mdash; is a better conversation in person than on a screen.</p>
     <p class="contact-note" style="margin-top:0;margin-bottom:2.5rem;">Case studies, process detail, and work samples are available on request. I&rsquo;d rather walk through them with context than leave them unattended on a page.</p>
     <div class="contact-links">
@@ -655,11 +621,9 @@ const io = new IntersectionObserver(entries => {
 },{threshold:.07});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Nav scrolled state
 window.addEventListener('scroll', () => {
   document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
-
 </script>
 </body>
 </html>
