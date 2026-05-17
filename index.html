@@ -60,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .num-tag-dot{width:5px;height:5px;border-radius:50%}
 .num-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--gold);line-height:1;margin-bottom:.45rem}
 .num-label{font-size:.82rem;font-weight:500;color:var(--white);margin-bottom:.4rem;line-height:1.3}
-.num-context{font-size:.76rem;line-height:1.58;color:rgba(255,255,255,.35)}
+.num-context{font-size:.76rem;line-height:1.58;color:rgba(255,255,255,.35);font-family:'DM Sans',sans-serif}
 .leadership{background:var(--paper);padding:5rem 4rem}
 .lp-intro{max-width:620px;margin-bottom:3rem}
 .lp-intro h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);color:var(--ink);line-height:1.2;margin-bottom:.8rem}
@@ -85,7 +85,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .ap-card:hover{border-color:rgba(184,136,42,.35)}
 .ap-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:rgba(184,136,42,.25);line-height:1;margin-bottom:.8rem}
 .ap-title{font-size:.9rem;font-weight:500;color:var(--white);margin-bottom:.7rem;line-height:1.4}
-.ap-body{font-size:.82rem;line-height:1.72;color:rgba(255,255,255,.38)}
+.ap-body{font-size:.82rem;line-height:1.72;color:rgba(255,255,255,.38);font-family:'DM Sans',sans-serif}
 .ap-body strong{color:rgba(255,255,255,.72);font-weight:500}
 .history{background:var(--paper);padding:5rem 4rem}
 .history-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);color:var(--ink);letter-spacing:.04em;margin-bottom:.4rem}
@@ -113,8 +113,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 .contact-big em{color:var(--gold);font-style:normal}
 .contact-note{font-size:.92rem;color:rgba(255,255,255,.4);max-width:480px;margin:1.2rem auto 2.5rem;line-height:1.75}
 .contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
-footer{background:rgba(0,0,0,.4);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center}
-footer p{font-size:.72rem;color:rgba(255,255,255,.18);letter-spacing:.06em}
+footer{background:rgba(0,0,0,.4);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif}
+footer p{font-size:.72rem;color:rgba(255,255,255,.18);letter-spacing:.06em;font-family:'DM Sans',sans-serif}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .reveal.on{opacity:1;transform:translateY(0)}
@@ -166,6 +166,60 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
 .layer-title{animation:borderPulse 7s ease-in-out infinite;animation-delay:calc(var(--j,0) * 1.2s)}
 .lp-layer:nth-child(1) .layer-title{--j:0}.lp-layer:nth-child(2) .layer-title{--j:1}.lp-layer:nth-child(3) .layer-title{--j:2}.lp-layer:nth-child(4) .layer-title{--j:3}
 .hero::after{display:none}
+
+/* ══════════════════════════════════════════════
+   MODE SWITCHER — I have time / I'm in a rush
+══════════════════════════════════════════════ */
+.mode-switcher{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:600;display:flex;align-items:stretch;background:rgba(10,15,20,.92);border:1px solid rgba(184,136,42,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 40px rgba(0,0,0,.55),0 0 0 1px rgba(184,136,42,.12);overflow:hidden}
+.mode-btn{position:relative;display:flex;align-items:center;gap:.5rem;padding:.85rem 1.6rem;font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:rgba(255,255,255,.38);border:none;cursor:pointer;transition:color .25s ease;white-space:nowrap;outline:none}
+.mode-btn:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;z-index:2}
+.mode-btn[aria-pressed="true"]{color:var(--ink)}
+.mode-btn svg{width:13px;height:13px;flex-shrink:0;opacity:.6;transition:opacity .25s}
+.mode-btn[aria-pressed="true"] svg{opacity:1}
+.mode-switcher-track{position:absolute;top:4px;bottom:4px;width:calc(50% - 4px);background:var(--gold);transition:transform .38s cubic-bezier(.77,0,.18,1);pointer-events:none;left:4px}
+.mode-switcher.rush .mode-switcher-track{transform:translateX(calc(100% + 0px))}
+.mode-divider{width:1px;background:rgba(184,136,42,.25);margin:.5rem 0;flex-shrink:0}
+.skip-link{position:absolute;top:-100%;left:1rem;background:var(--gold);color:var(--ink);padding:.5rem 1rem;font-size:.8rem;font-weight:600;z-index:9999;text-decoration:none;transition:top .2s}
+.skip-link:focus{top:1rem}
+.full-only{transition:opacity .18s ease}
+.short-only{display:none !important;opacity:0}
+body.rush-mode .full-only{display:none !important}
+body.rush-mode .short-only{display:block !important;animation:rushIn .45s cubic-bezier(.22,1,.36,1) both}
+body.rush-mode .short-only.flex-short{display:flex !important}
+@keyframes rushIn{0%{opacity:0;transform:translateY(32px) scale(.98);filter:blur(4px)}60%{filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes fullIn{0%{opacity:0;transform:translateY(-24px) scale(.99);filter:blur(3px)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+body.has-switched:not(.rush-mode) .full-only{animation:fullIn .4s cubic-bezier(.22,1,.36,1) both}
+body::after{content:'';position:fixed;inset:0;background:var(--ink);opacity:0;pointer-events:none;z-index:590;transition:opacity .18s ease}
+body.mode-switching::after{opacity:.18}
+body.rush-mode .hero{min-height:auto;padding-bottom:3rem}
+body.rush-mode .hero-inner{padding-top:2rem;padding-bottom:2rem}
+body.rush-mode .hero-pitch-short{color:rgba(255,255,255,.78);animation:rushIn .45s cubic-bezier(.22,1,.36,1) both}
+.hero-pitch-short{font-size:1.1rem;line-height:1.8;color:rgba(255,255,255,.78);max-width:560px;margin-bottom:2.8rem;font-weight:300}
+.hero-pitch-short strong{color:var(--white);font-weight:500}
+.proof-lines{padding:0 4rem 3rem;background:var(--paper)}
+.proof-line{display:grid;grid-template-columns:90px 1fr;gap:2rem;padding:1.8rem 0;border-bottom:1px solid var(--warm);align-items:start}
+.proof-line:first-child{border-top:1px solid var(--warm)}
+.proof-line:last-child{border-bottom:none}
+.pl-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);line-height:1;padding-top:.1rem}
+.pl-text{font-size:.9rem;line-height:1.7;color:var(--mid)}
+.pl-text strong{color:var(--ink);font-weight:500;display:block;margin-bottom:.2rem}
+.approach-pills{display:flex;flex-wrap:wrap;gap:1rem;padding:3rem 4rem}
+.ap-pill{padding:.8rem 1.4rem;border:1px solid rgba(184,136,42,.3);font-size:.82rem;font-weight:500;color:rgba(255,255,255,.75);line-height:1.35}
+.ap-pill span{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--gold);margin-right:.5rem}
+.timeline{padding:3rem 4rem;display:flex;flex-direction:column;background:var(--paper)}
+.tl-item{display:grid;grid-template-columns:160px 1fr;gap:2rem;padding:1.6rem 0;border-top:1px solid var(--warm);align-items:start}
+.tl-item:last-child{border-bottom:1px solid var(--warm)}
+.tl-period{font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:.15rem}
+.tl-co{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.06em;color:var(--ink);margin-bottom:.15rem}
+.tl-role{font-size:.75rem;color:var(--light);margin-bottom:.5rem}
+.tl-headline{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--ink);line-height:1.3;margin-bottom:.6rem}
+.tl-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem}
+.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin:.7rem 0 .5rem}
+.tl-bullets li{font-size:.82rem;line-height:1.6;color:var(--mid);padding-left:1rem;position:relative}
+.tl-bullets li::before{content:'--';position:absolute;left:0;color:var(--gold)}
+.tl-bullets li strong{color:var(--ink);font-weight:500}
+@media(max-width:760px){.mode-switcher{bottom:1rem}.proof-lines,.approach-pills,.timeline{padding:2rem 1.5rem}.tl-item{grid-template-columns:1fr;gap:.4rem}.mode-btn{padding:.75rem 1rem;font-size:.65rem}}
+
 </style>
 </head>
 <body>
@@ -190,8 +244,11 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="hero-pre">Head of Design &middot; 15+ Years &middot; Brisbane &middot; Sydney &middot; Remote</div>
       <h1 class="hero-name">MATIAS<br><b>RODRIGUEZ</b></h1>
       <div class="hero-role">Product Design Manager &middot; Kindred Group &middot; FDJ United</div>
+      <div class="full-only">
       <p class="hero-pitch">I lead product design where <strong>customer behaviour, commercial performance, and technical delivery</strong> need to work together. Complex problems with no obvious answer &mdash; the kind that sit at the intersection of competing constraints &mdash; are where I do my best work. Over the last 15+ years I have helped teams improve conversion, reduce delivery friction, scale design systems, and turn complex regulated journeys into clearer product experiences.</p>
-      <p class="hero-portable"><strong style="color:rgba(255,255,255,.72)">Design earns authority through evidence, not seniority.</strong> I build the operating systems, measurement frameworks, and commercial arguments that let design lead &mdash; not just deliver. My value is not domain-specific: I specialise in regulated, high-volume environments where small UX decisions have real consequences for conversion, compliance, and product margin.</p>
+      <p class="hero-portable">My value is not domain-specific. I specialise in regulated, high-volume digital environments where small UX decisions affect conversion, operational cost, compliance risk, and product margin.</p>
+      </div>
+      <p class="hero-pitch-short short-only">I build the operating systems, measurement models, and commercial arguments that let design lead &mdash; not just deliver. <strong>15+ years. Six regulated markets. Zero assumptions.</strong></p>
       <div class="hero-ctas">
         <a href="#numbers" class="btn btn-g">See the numbers</a>
         <a href="mailto:matiascassella@gmail.com" class="btn btn-o">Get in touch</a>
@@ -215,22 +272,11 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
   </div>
 </section>
 
-<!-- CREDO STRIP -->
-<div style="background:var(--ink);border-top:1px solid rgba(184,136,42,.15);border-bottom:1px solid rgba(184,136,42,.15);padding:2rem 4rem;display:flex;align-items:center;gap:4rem;overflow-x:auto">
-  <div style="flex-shrink:0;font-family:'Bebas Neue',sans-serif;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)">Point of view</div>
-  <div style="display:flex;gap:3rem;flex-wrap:wrap">
-    <div style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;max-width:220px"><span style="color:rgba(255,255,255,.8);font-weight:500;display:block;margin-bottom:.2rem">Evidence before opinion</span>Design decisions should generate data. If you can&rsquo;t measure it, you can&rsquo;t defend it.</div>
-    <div style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;max-width:220px"><span style="color:rgba(255,255,255,.8);font-weight:500;display:block;margin-bottom:.2rem">Foundation before feature</span>Operating model first. Measurement model first. Then the product.</div>
-    <div style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;max-width:220px"><span style="color:rgba(255,255,255,.8);font-weight:500;display:block;margin-bottom:.2rem">Influence through constraint</span>The best design work happens inside real limits &mdash; regulatory, technical, organisational.</div>
-    <div style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;max-width:220px"><span style="color:rgba(255,255,255,.8);font-weight:500;display:block;margin-bottom:.2rem">Authority through numbers</span>Not seniority, not tenure. Commercial arguments that change decisions.</div>
-  </div>
-</div>
-
 <!-- NUMBERS -->
 <section class="numbers-block" id="numbers">
   <div class="nb-header reveal">
     <div>
-      <div class="eyebrow-line" style="margin-bottom:.5rem"><span></span>Kindred Group &middot; FDJ United &middot; 2022&ndash;Present</div>
+      <div class="eyebrow-line" style="margin-bottom:.5rem"><span></span>Kindred Group &middot; FDJ United &middot; 2025&ndash;Present</div>
       <h2 class="nb-heading">THE NUMBERS</h2>
     </div>
     <div class="nb-legend">
@@ -240,7 +286,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="legend-item"><div class="legend-dot dot-t"></div>Team / Org impact</div>
     </div>
   </div>
-  <div class="num-grid">
+  <div class="num-grid full-only">
 
     <div class="row-label"><span class="rl-icon">&#x1F4C8;</span><span class="rl-text">Commercial</span></div>
 
@@ -248,7 +294,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">2&times;</div>
       <div class="num-label">Product surface usage &mdash; placement change, no feature work</div>
-      <div class="num-context">Repositioning an existing product to a higher-visibility surface doubled usage without changing the product itself. The argument was built from production data and presented commercially &mdash; a design decision framed as a revenue decision, not a UX preference.</div>
+      <div class="num-context">Repositioning the Popular product builder widget to a primary surface doubled usage without changing the product. The intervention was placement, not features &mdash; a commercial argument built from product engagement data across 80+ eligible matches.</div>
     </div>
 
     <div class="num-card reveal">
@@ -292,7 +338,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">&ndash;20%</div>
       <div class="num-label">Handover time reduced</div>
-      <div class="num-context">Discovery to Test to Spec to Dev Support model keeps design active through build. Fewer defects, less rework. Structured delivery model separates exploration from build-ready work &mdash; engineering always knows exactly what stage design is at.</div>
+      <div class="num-context">Discovery to Test to Spec to Dev Support model keeps design active through build. Fewer defects, less rework. Structured ticket model separates exploration from build-ready work &mdash; engineering always knows exactly what stage design is at.</div>
     </div>
 
     <div class="num-card reveal">
@@ -315,21 +361,21 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">5 pillars</div>
       <div class="num-label">Promotions engine &mdash; engineering once, CRM-operated forever</div>
-      <div class="num-context">Designed a five-pillar campaign architecture separating the engineering layer (built once, versioned, locked) from audience segments, qualification rules, offer targeting, and campaign assembly (operated by non-technical team, zero code per campaign). Removes engineering dependency from every new campaign after initial build. Live across four markets.</div>
+      <div class="num-context">Designed a five-pillar promotion architecture separating token mechanics (engineering-once, versioned, locked) from audience segments, qualification missions, bet targeting, and promo assembly (CRM-operated, zero code per campaign). Removes engineering from every new promotion after the initial token build. Live across GB, FR, RO, NL.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">Decision Map</div>
       <div class="num-label">Design authority held at exec level &mdash; formally</div>
-      <div class="num-context">During a high-stakes market launch, presented a formal Decision Map to Heads of and Exec &mdash; four open topics, stakeholder ask vs design position vs proposed v1 decision on each. Held four positions in writing. Trade-off rule documented and enforced: if something is added, something else is removed or the date moves.</div>
+      <div class="num-context">During a high-stakes FR market launch, presented a formal Decision Map to Heads of and Exec &mdash; four open topics, stakeholder ask vs PD position vs proposed v1 decision on each. Held: single card template, MoTD vertical, density via token over variant sprawl. Trade-off rule documented in writing: if something is added, something else is removed or the date moves.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">Live</div>
       <div class="num-label">Bet type capability matrix &amp; friction event taxonomy</div>
-      <div class="num-context">Mapped which product interactions are available natively at each surface depth vs where they require additional navigation. Defined friction events and shortcut instrumentation requirements. Handed to the analytics team as the instrumentation brief &mdash; design defining how the organisation measures itself.</div>
+      <div class="num-context">Mapped which bet types can be placed natively at each depth vs where they require lateral navigation. Defined friction events and cross-level shortcut instrumentation requirements. Handed to Experience Analytics as the instrumentation brief &mdash; design defining how the organisation measures itself.</div>
     </div>
 
     <div class="row-label"><span class="rl-icon">&#x1F465;</span><span class="rl-text">Customer &amp; Research</span></div>
@@ -338,28 +384,58 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">10+</div>
       <div class="num-label">Research studies launched &mdash; never done before for UK</div>
-      <div class="num-context">Spearheaded the first structured research program for this product &mdash; built from scratch where none existed. 10+ unmoderated studies in year one, each running 100+ participants. A capability that did not exist before, now a standard part of how product decisions are validated.</div>
+      <div class="num-context">Spearheaded the first structured research program for the UK regulated digital product product &mdash; equivalent to what existed in FR, built from scratch. 10+ unmoderated studies in the year since launch, each running 100+ participants. A capability that did not exist before, now a standard part of how product decisions are validated.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">100+</div>
       <div class="num-label">Participants per study &mdash; cross-market agreement on tooling</div>
-      <div class="num-context">Before any study launched, drove formal agreement with teams across all markets on a shared testing platform &mdash; faster execution, consistent methodology, comparable data across all markets. The infrastructure agreement came first; the research scale followed.</div>
+      <div class="num-context">Before any study launched, drove formal agreement with teams across all markets on Maze as the shared testing platform &mdash; faster execution, consistent methodology, comparable data across GB, FR, RO, NL. The infrastructure agreement came first; the research scale followed.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-b"></div>Benchmarked</div>
       <div class="num-big">25%</div>
-      <div class="num-label">Users engaging with primary conversion surface</div>
-      <div class="num-context">Analytics showed the primary landing surface was already driving direct conversions &mdash; 15% completed a transaction from it. Reframed page priority across product and content teams without a lengthy research cycle. The data existed; the work was making it visible and actionable.</div>
+      <div class="num-label">Users adding to transaction flow from homepage</div>
+      <div class="num-context">Analytics showed homepage was already a conversion surface &mdash; 15% placed a bet directly from it. Reframed page priority across product and content teams without a lengthy research cycle. Data already existed &mdash; the work was making it visible and actionable to the right people.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-t"></div>Team impact</div>
       <div class="num-big">9</div>
-      <div class="num-label">Hero journeys &rarr; product initiatives &mdash; design drove the roadmap for the first time</div>
-      <div class="num-context">Survey with internal operations teams identified 9 hero journeys across a back-office platform. Ran 3 workshops (3 journeys each) writing product initiatives directly from real user problems &mdash; not assumptions. Design had never driven the product backlog for this platform before. Problems became the roadmap.</div>
+      <div class="num-label">Hero journeys &rarr; product initiatives &mdash; design drove product strategy for the first time</div>
+      <div class="num-context">Survey with internal Trading, Ops, and Risk teams identified 9 hero journeys across the back-office platform. Ran 3 workshops (3 journeys each) writing product initiatives directly from real user problems &mdash; not assumptions. Design had never driven product initiatives for this platform before. Problems became the backlog.</div>
+    </div>
+
+    <div class="row-label"><span class="rl-icon">&#x26A1;</span><span class="rl-text">AI &amp; Workflow Automation</span></div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">4&ndash;6 hrs</div>
+      <div class="num-label">Admin time reclaimed weekly &mdash; across design management</div>
+      <div class="num-context">Jira ticket completion checks, Confluence updates, and stakeholder summaries automated across 3 design managers. AI reads tickets marked done, cross-checks artefacts against agreed Ways of Working, and generates stakeholder summaries in the right tone &mdash; replacing what was a manual review and write-up step for every ticket cycle.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">2&ndash;3 days</div>
+      <div class="num-label">Research cycle cut &mdash; survey build to synthesised findings</div>
+      <div class="num-context">AI used to build the study structure, then analyse the output from CSV exports. What previously took days of manual review and write-up now takes hours. Human validation layer retained throughout &mdash; outputs reviewed for accuracy before any finding is actioned or triaged to a product initiative.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
+      <div class="num-big">&ndash;3 steps</div>
+      <div class="num-label">Manual steps removed from the design completion flow</div>
+      <div class="num-context">Three steps eliminated: artefact compliance check against WoWs, stakeholder summary writing, and CSV export interpretation. Each was a context switch pulling managers out of design work. None required human judgement. Confluence and Jira AI integrations configured via terminal and trained on team naming conventions and artefact standards.</div>
+    </div>
+
+    <div class="num-card reveal">
+      <div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div>
+      <div class="num-big">Cross-study</div>
+      <div class="num-label">Research compounding &mdash; findings linked across initiatives by surface</div>
+      <div class="num-context">Building toward a model where every product initiative automatically surfaces relevant research from studies that touched the same surface area &mdash; participant counts, comprehension rates, placement findings. Research stops being a one-time deliverable and becomes a live input to the backlog. The value compounds with every new study.</div>
     </div>
 
     <div class="row-label"><span class="rl-icon">&#x1F6E3;&#xFE0F;</span><span class="rl-text">Pipeline &mdash; Commercial &amp; Operational Value</span></div>
@@ -368,31 +444,67 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="num-tag"><div class="num-tag-dot dot-m"></div>In progress</div>
       <div class="num-big">5&rarr;1</div>
       <div class="num-label">Event card variants consolidated into one canonical component</div>
-      <div class="num-context">Five isolated component variants &mdash; each maintained separately, each requiring its own design and engineering changes &mdash; replaced by a single configurable model. One change now propagates across all surfaces. Reduced time-to-market and eliminated a class of parallel maintenance debt that was invisible to leadership until it was quantified.</div>
+      <div class="num-context">Five isolated card variants &mdash; each maintained separately, each requiring its own design and engineering changes &mdash; replaced by a single configurable model. One change now propagates across all surfaces. Reduced time-to-market and eliminated a class of parallel maintenance debt invisible to leadership until it was quantified.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-m"></div>In progress</div>
-      <div class="num-big">9 templates</div>
-      <div class="num-label">Market display optimisation architecture &mdash; all betting surfaces governed</div>
-      <div class="num-context">Designed 9 clearly named, component-agnostic templates that now define every product surface. Replaced an ad-hoc, surface-specific layout approach with a shared architectural language that engineering, design, and product reference consistently. The persistent right-hand panel on web is one output of this architecture &mdash; the template model is the structural change.</div>
+      <div class="num-big">9 Templates</div>
+      <div class="num-label">Market display architecture &mdash; all surfaces governed</div>
+      <div class="num-context">9 clearly named, component-agnostic templates define every product surface. Replaced an ad-hoc approach with a shared architectural language across design, engineering, and product. Persistent right-hand panel on web is one output of this architecture &mdash; the template model is the structural change.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-m"></div>In progress</div>
       <div class="num-big">4&rarr;1</div>
-      <div class="num-label">Interaction model consolidated &mdash; fewer states, fewer production defects</div>
-      <div class="num-context">Four separate interaction lanes &mdash; each with their own conditional states and error edge cases &mdash; being consolidated into a single unified model. Fewer states means fewer defects, faster QA cycles, and a more predictable experience across product types and markets. An operational cost reduction framed as an architecture decision.</div>
+      <div class="num-label">Interaction model consolidated &mdash; fewer states, fewer defects</div>
+      <div class="num-context">Four separate interaction lanes &mdash; each with their own conditional states and error edge cases &mdash; being consolidated into a single unified model. Fewer states means fewer defects, faster QA, and a more predictable experience across bet types and markets. Operational cost reduction framed as a design decision.</div>
     </div>
 
     <div class="num-card reveal">
       <div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div>
       <div class="num-big">0&rarr;12</div>
       <div class="num-label">Product initiatives driven by design in 3 quarters</div>
-      <div class="num-context">Design was not shaping the product roadmap. Three quarters of stakeholder influence work &mdash; hero journey surveys, structured research, cross-functional workshops writing from real user problems &mdash; shifted design from delivery function to roadmap contributor. 12 product initiatives in, more in pipeline.</div>
+      <div class="num-context">Design was not writing product initiatives. Three quarters of stakeholder influence work &mdash; hero journey surveys, structured research, cross-functional workshops writing from real user problems &mdash; shifted design from delivery function to roadmap contributor. 12 product initiatives in, more in pipeline.</div>
     </div>
 
   </div>
+
+<!-- CONDENSED NUMBERS -->
+<div class="short-only" style="background:var(--ink2)">
+  <div class="num-grid">
+    <div class="row-label"><span class="rl-icon">&#x1F4C8;</span><span class="rl-text">Commercial Influence</span></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">2&times;</div><div class="num-label">Product surface usage &mdash; placement change, no feature work</div><div class="num-context">Repositioning alone doubled usage. Commercial case built from production data.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div><div class="num-big">4&times;</div><div class="num-label">Product surface usage &mdash; next phase target</div><div class="num-context">Surface expansion + behavioural nudge. Benchmarked against external A/B data.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div><div class="num-big">48&times;</div><div class="num-label">Efficiency advantage over alternative build</div><div class="num-context">~10 story points vs ~60. Decision changed after financial triage.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-b"></div>Benchmarked</div><div class="num-big">80&ndash;85%</div><div class="num-label">Engagement in positions 1&ndash;2 regardless of total shown</div><div class="num-context">Used to reduce 7&ndash;8 options to 3&ndash;4. UX, performance, commercial argument in one.</div></div>
+    <div class="row-label"><span class="rl-icon">&#x2699;&#xFE0F;</span><span class="rl-text">Operating Model &amp; Delivery</span></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">1 Qtr</div><div class="num-label">Design ahead of engineering &mdash; sustained</div><div class="num-context">Up from 2 weeks. Dual-track model protects pipeline while current work ships.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">Full system</div><div class="num-label">Design operating model built from scratch</div><div class="num-context">3-lane delivery, quality gates, production impact loop, async protocol. Adopted org-wide.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">&ndash;20%</div><div class="num-label">Handover time reduced</div><div class="num-context">Design active through build. Exploration separated from build-ready work.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">First</div><div class="num-label">Accessibility embedded in Acceptance Criteria</div><div class="num-context">A11y as a delivery gate, not a retro audit. Targeting 50% app coverage.</div></div>
+    <div class="row-label"><span class="rl-icon">&#x1F4CA;</span><span class="rl-text">Measurement &amp; Systems Architecture</span></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">L0&ndash;L3</div><div class="num-label">Depth-stratified measurement framework</div><div class="num-context">Surface taxonomy by navigation depth. Separates surface from module attribution. Reusable across any product vertical.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">5 pillars</div><div class="num-label">Campaign engine &mdash; engineering once, operated forever</div><div class="num-context">Engineering layer built once. Campaign assembly by non-technical team. Zero code per campaign.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">Decision Map</div><div class="num-label">Design authority held at exec level</div><div class="num-context">Four positions held in writing. Scope trade-off rule enforced.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">9 templates</div><div class="num-label">Surface architecture governing all product interfaces</div><div class="num-context">Replaced ad-hoc approach. Shared architectural language across design, engineering, product.</div></div>
+    <div class="row-label"><span class="rl-icon">&#x1F465;</span><span class="rl-text">Research &amp; Org Capability</span></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">10+</div><div class="num-label">Research studies &mdash; capability built from zero</div><div class="num-context">First structured research program. Cross-market platform agreement before launch. 100+ participants per study.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">100+</div><div class="num-label">Participants per study &mdash; consistent across markets</div><div class="num-context">Shared platform agreed before any study launched. Infrastructure first, scale followed.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-b"></div>Benchmarked</div><div class="num-big">25%</div><div class="num-label">Users engaging with primary conversion surface</div><div class="num-context">Data existed &mdash; the work was making it visible and actionable.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-t"></div>Team impact</div><div class="num-big">9</div><div class="num-label">Hero journeys &rarr; product initiatives</div><div class="num-context">Survey, 3 workshops, real problems. Design drove the backlog for the first time.</div></div>
+    <div class="row-label"><span class="rl-icon">&#x26A1;</span><span class="rl-text">AI &amp; Workflow Automation</span></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">4&ndash;6 hrs</div><div class="num-label">Admin time reclaimed weekly &mdash; across 3 design managers</div><div class="num-context">WoW checks, Confluence updates, stakeholder summaries automated. Managers back to design work.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">2&ndash;3 days</div><div class="num-label">Research cycle cut &mdash; build to synthesised findings</div><div class="num-context">AI builds the study, analyses CSV output. Days of manual review cut to hours. Human validation retained.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">&ndash;3 steps</div><div class="num-label">Manual steps removed from design completion flow</div><div class="num-context">Artefact check, stakeholder summary, CSV interpretation automated. Jira/Confluence AI trained on team standards.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-m"></div>Modelled</div><div class="num-big">Cross-study</div><div class="num-label">Research compounding across initiatives by surface</div><div class="num-context">Every product initiative will surface relevant research from studies touching the same area.</div></div>
+    <div class="row-label"><span class="rl-icon">&#x1F6E3;&#xFE0F;</span><span class="rl-text">Pipeline &mdash; Commercial &amp; Operational Value</span></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-m"></div>In progress</div><div class="num-big">5&rarr;1</div><div class="num-label">Component variants into one canonical model</div><div class="num-context">Five isolated variants replaced by one configurable model. Changes propagate across all surfaces.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-m"></div>In progress</div><div class="num-big">9 templates</div><div class="num-label">Surface architecture &mdash; all interfaces governed</div><div class="num-context">Component-agnostic templates replacing ad-hoc surface approach.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-m"></div>In progress</div><div class="num-big">4&rarr;1</div><div class="num-label">Interaction model lanes consolidated</div><div class="num-context">Fewer states, fewer defects, faster QA. Operational cost reduction as architecture decision.</div></div>
+    <div class="num-card"><div class="num-tag"><div class="num-tag-dot dot-d"></div>Delivered</div><div class="num-big">0&rarr;12</div><div class="num-label">Product initiatives driven by design in 3 quarters</div><div class="num-context">Hero journeys, workshops, real problems. Design now drives the backlog.</div></div>
+  </div>
+</div>
 </section>
 
 <!-- LEADERSHIP -->
@@ -401,7 +513,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
     <h2>Proof of leadership,<br>not just strategy</h2>
     <p>Head of Design roles ask whether you can lead people, build systems, and hold a position under pressure &mdash; not just own a product surface. Here is the direct answer.</p>
   </div>
-  <div class="lp-grid">
+  <div class="lp-grid full-only">
     <div class="lp-card reveal">
       <div class="lp-num">20+</div>
       <div class="lp-label">Designers mentored</div>
@@ -410,7 +522,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
     <div class="lp-card reveal">
       <div class="lp-num">0&rarr;1</div>
       <div class="lp-label">Design operating system &mdash; not just templates</div>
-      <div class="lp-desc">At both my current organisation and a national infrastructure company, I arrived without delivery infrastructure and built complete operating models: source-of-truth ticketing, 3-lane delivery standard, quality gates, production impact loop, and a distributed async protocol. Adopted org-wide in both cases. Now the default way design work moves.</div>
+      <div class="lp-desc">At both my current role and NBN I arrived without delivery infrastructure. What I built was a complete operating model: Jira-first source of truth, 3-ticket standard, dual-track swimlanes, Gate A/B/C checkpoints, Stage 4 production impact loop, and an async protocol across AU/SE/FR/RO timezones. Adopted org-wide. Now the default way design work moves.</div>
     </div>
     <div class="lp-card reveal">
       <div class="lp-num">3</div>
@@ -425,12 +537,12 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
     <div class="lp-card reveal">
       <div class="lp-num">Held</div>
       <div class="lp-label">Design authority on commercial decisions &mdash; with numbers</div>
-      <div class="lp-desc">Leadership didn&rsquo;t want a proposed engagement mechanism. I presented the modelling &mdash; production interaction data across 80+ events, projected revenue uplift, 48&times; story point efficiency vs the last comparable build &mdash; triaged against financials until the decision changed. On the FR launch, a formal Decision Map to Heads of and Exec held four design positions in writing. Scope-for-scope trade rule enforced: if something is added, something else is removed or the date moves.</div>
+      <div class="lp-desc">On Popular product builder, the business didn&rsquo;t want the social proof counter. I presented the modelling &mdash; product engagement data across 80+ matches, projected revenue uplift, 48&times; story point efficiency vs the last comparable build &mdash; triaged against financials until the decision changed. On the FR launch, a formal Decision Map to Heads of and Exec held four design positions in writing. Scope-for-scope trade rule enforced: if something is added, something else is removed or the date moves.</div>
     </div>
     <div class="lp-card reveal">
       <div class="lp-num">0&rarr;12</div>
-      <div class="lp-label">Product initiatives driven by design in 3 quarters &mdash; from none</div>
-      <div class="lp-desc">Design was not shaping the product roadmap. After 3 quarters of stakeholder influence work &mdash; hero journey mapping, structured research, cross-functional workshops writing from real user problems &mdash; design now drives 12 product initiatives. The shift from delivery function to roadmap contributor, measurable.</div>
+      <div class="lp-label">product initiatives driven by design in 3 quarters &mdash; from none</div>
+      <div class="lp-desc">Design was not writing product initiatives. After 3 quarters of stakeholder influence work &mdash; hero journey mapping, structured research, cross-functional workshops &mdash; design now drives 12 product initiatives from real user problems. The shift from order-taker to roadmap contributor, measurable.</div>
     </div>
     <div class="lp-card reveal">
       <div class="lp-num">0</div>
@@ -438,7 +550,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="lp-desc">Full-scale app redesign at Tabcorp under a fixed launch deadline across multiple squads. Zero team turnover &mdash; maintained morale, output quality, and cross-squad alignment throughout a high-pressure multi-month programme.</div>
     </div>
   </div>
-  <div class="lp-map reveal">
+  <div class="lp-map reveal full-only">
     <div class="lp-map-title">Designers are the glue &mdash; this is what that looks like in practice</div>
     <div class="lp-layers">
       <div class="lp-layer"><div class="layer-title">Customer layer</div><ul class="layer-items"><li>User researchers</li><li>CRM teams</li><li>UX specialists</li><li>Unmoderated / A/B testing</li><li>Behavioural analytics</li></ul></div>
@@ -447,16 +559,24 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="lp-layer"><div class="layer-title">Risk layer</div><ul class="layer-items"><li>Compliance teams</li><li>Regulatory advisors</li><li>Responsible Gambling</li><li>Legal / market requirements</li><li>Research framing for sign-off</li></ul></div>
     </div>
   </div>
+
+<!-- CONDENSED LEADERSHIP -->
+<div class="proof-lines short-only">
+  <div class="proof-line"><div class="pl-num">0&rarr;1</div><div class="pl-text"><strong>Design operating system built from scratch &mdash; twice, adopted twice.</strong>3-lane delivery, quality gates, production impact loop. Engineering and product planned differently because of it.</div></div>
+  <div class="proof-line"><div class="pl-num">Held</div><div class="pl-text"><strong>Design authority on commercial decisions &mdash; with numbers.</strong>Revenue case built, triaged against financials, four positions held in writing at exec level.</div></div>
+  <div class="proof-line"><div class="pl-num">0&rarr;12</div><div class="pl-text"><strong>Product initiatives driven by design in 3 quarters &mdash; from none.</strong>Hero journeys, workshops, real problems. Design now drives the backlog.</div></div>
+  <div class="proof-line"><div class="pl-num">20+</div><div class="pl-text"><strong>Designers mentored across three organisations &mdash; multiple promotions to Senior and Lead.</strong>Zero turnover during a full platform redesign under a fixed deadline.</div></div>
+</div>
 </section>
 
 <!-- APPROACH -->
 <section class="approach" id="approach">
   <h2 class="approach-heading reveal">How I lead</h2>
-  <p class="approach-sub reveal">Four principles that run through 15+ years of work across regulated digital products &mdash; and explain why the output holds up under exec scrutiny.</p>
-  <div class="approach-grid">
+  <p class="approach-sub reveal full-only">Four principles that run through everything above &mdash; and explain why the work holds up across different domains.</p>
+  <div class="approach-grid full-only">
     <div class="ap-card reveal">
       <div class="ap-num">01</div>
-      <div class="ap-title">Connect the dots between people who don&rsquo;t naturally talk to each other</div>
+      <div class="ap-title">Connect the dots between business units who don&rsquo;t naturally talk to each other</div>
       <p class="ap-body">I see design as the glue between commercial strategy, technical delivery, customer behaviour, and compliance. None of those teams have the same language or the same incentives &mdash; and most of the time, <strong>nobody is connecting what they know into a single product direction</strong>. That&rsquo;s the job. Not just running workshops, but synthesising what comes out of them into something engineering can build and leadership can stand behind.</p>
     </div>
     <div class="ap-card reveal">
@@ -475,6 +595,14 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <p class="ap-body">I don&rsquo;t wait for analytics to tell me what to track. I define the surface taxonomy, the friction events to instrument, and the conversion logic per bet type <strong>before the first sprint starts</strong>. Design decisions should generate evidence &mdash; but only if you set up the measurement architecture in advance. That&rsquo;s what makes the next decision faster and the next proposal harder to dismiss.</p>
     </div>
   </div>
+
+<!-- CONDENSED APPROACH -->
+<div class="approach-pills short-only" style="background:var(--ink)">
+  <div class="ap-pill"><span>01</span>Connect the dots between business units who don&rsquo;t naturally talk to each other</div>
+  <div class="ap-pill"><span>02</span>Take things from 0 to 1 in real environments, not ideal ones</div>
+  <div class="ap-pill"><span>03</span>Let the evidence earn the next phase</div>
+  <div class="ap-pill"><span>04</span>Build the measurement model before the product ships</div>
+</div>
 </section>
 
 <!-- HISTORY -->
@@ -483,52 +611,53 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
   <h2 class="history-heading reveal">CAREER</h2>
   <p class="history-sub reveal">Detail for the conversation &mdash; enough to verify the numbers above and generate the right questions.</p>
 
-  <div class="job reveal">
+  <div class="job reveal full-only">
     <div class="job-meta">
-      <div class="job-period">2022 &ndash; Present</div>
+      <div class="job-period">2025 &ndash; Present</div>
       <div class="job-co">Kindred Group &middot; FDJ United</div>
       <div class="job-title">Product Design Manager</div>
     </div>
     <div class="job-body">
-      <h3 class="job-headline">Design operating system, platform architecture, and commercial influence across a global regulated product</h3>
-      <div class="job-context">Leading 3 designers across AU &amp; SE &middot; Six regulated markets &middot; High-volume transactional platform &middot; Distributed team (AU, SE, FR, RO) &middot; Shipping simultaneously across four markets</div>
+      <h3 class="job-headline">Design operating system, measurement architecture, and commercial design across a global regulated digital product</h3>
+      <div class="job-context">Six regulated markets &middot; Transaction flow &middot; product builder &middot; Promotions Engine &middot; Analytics Framework &middot; Event Cards &middot; Distributed international team (AU, SE, FR, RO)</div>
       <div class="job-cols">
         <div class="job-col">
-          <div class="job-col-label">Commercial &amp; Strategic</div>
+          <div class="job-col-label">Commercial &amp; Product</div>
           <ul class="job-col-items">
-            <li>Product surface repositioning delivered <strong>2&times; usage increase</strong> &mdash; my team shipped the surface change, I built and presented the commercial case. Next phase designed at 4&times; via surface expansion and behavioural nudge mechanism &mdash; 48&times; more efficient per story point than comparable build</li>
-            <li>Proposed mechanism: challenged business reluctance with <strong>external A/B benchmark (+7% engagement lift, 96% confidence)</strong> &mdash; formal decision review document separating value, implementation, and prioritisation questions</li>
-            <li>Campaign engine: <strong>five-pillar architecture</strong> removing engineering from every new campaign after initial build &mdash; live across four markets</li>
-            <li>Market launch: formal <strong>Decision Map to Heads of and Exec</strong> holding four design positions &mdash; scope-for-scope trade rule documented and enforced in writing</li>
-            <li>Primary surface reframed as a conversion surface: <strong>25% product engagement, 15% direct conversion</strong> from analytics evidence alone</li>
+            <li>product builder placement change delivered <strong>2&times; usage increase</strong>. Next phase designed at 4&times; via event page expansion and social proof mechanism &mdash; business case from production data, 48&times; more efficient per story point than comparable widget build</li>
+            <li>Social proof counter: challenged business pushback with <strong>Betfair A/B result (+7% CTR, 96% confidence)</strong> &mdash; formal decision review document separating value, implementation, and prioritisation questions</li>
+            <li>Promotions engine: <strong>five-pillar architecture</strong> removing engineering from every new campaign after initial token build &mdash; live across GB, FR, RO, NL</li>
+            <li>FR market launch: formal <strong>Decision Map to Heads of and Exec</strong> holding single card template, MoTD vertical, density-via-token &mdash; scope-for-scope trade rule documented and enforced</li>
+            <li>Homepage reframed as conversion surface: <strong>25% product engagement, 15% bet placement</strong> from analytics evidence alone</li>
           </ul>
         </div>
         <div class="job-col">
           <div class="job-col-label">Operating Model &amp; Systems</div>
           <ul class="job-col-items">
-            <li>Built full design operating model from scratch &mdash; adopted by team of 3 across two continents: <strong>source-of-truth ticketing, 3-lane delivery standard, quality gates, production impact loop</strong></li>
+            <li>Built full design operating model from scratch: <strong>Jira-first, Epic to 3-ticket standard, dual-track swimlanes, Gate A/B/C, Stage 4 production impact loop</strong></li>
             <li>Design runs <strong>one full quarter ahead of engineering</strong>, up from 2 weeks on arrival &mdash; <strong>&ndash;20% handover time</strong>, fewer production defects</li>
-            <li>Authored <strong>depth-stratified measurement framework</strong> (surface taxonomy, module vs surface attribution split, interaction capability matrix, friction event taxonomy) &mdash; handed to analytics team as the instrumentation brief</li>
+            <li>Authored <strong>depth-stratified analytics framework</strong> (L0&ndash;L3 taxonomy, Template vs Widget attribution, Bet Type Capability Matrix, friction event taxonomy) &mdash; handed to Experience Analytics as the instrumentation brief</li>
             <li>Fluent across API layers, CMS platforms, and feature flag infrastructure &mdash; in tech planning rooms before architecture is locked</li>
             <li>First <strong>WCAG a11y in Acceptance Criteria</strong> across the product &mdash; targeting 50% app coverage</li>
+            <li><strong>AI workflow automation</strong> &mdash; Jira/Confluence integrations configured via terminal and trained on team context; automated WoW compliance checks and stakeholder summaries; research synthesis from CSV exports triaged to product initiatives</li>
           </ul>
         </div>
         <div class="job-col">
           <div class="job-col-label">People &amp; Research</div>
           <ul class="job-col-items">
             <li>Distributed team managed (Lead + Senior designers) &mdash; skill matrices, progression frameworks, design-ahead rhythm</li>
-            <li>Spearheaded the <strong>first structured research program</strong> for this product &mdash; 10+ studies (100+ participants each) launched in year one. Drove cross-market agreement on a shared testing platform before any study launched</li>
+            <li>Spearheaded the <strong>first structured research program for UK regulated digital product</strong> &mdash; 10+ unmoderated studies (100+ participants each) launched in year one. Drove cross-market agreement on Maze as the shared testing platform before any study launched</li>
             <li><strong>Multiple studies including n=166</strong> on Related Bets placement &mdash; comprehension failure rate reframed as RG concern, escalated to stakeholders with formal recommendation</li>
-            <li>Survey with operations teams identified <strong>9 hero journeys</strong> &mdash; 3 cross-functional workshops (3 journeys each) wrote product initiatives from real user problems. First time design drove the product backlog for this platform</li>
+            <li>Survey with Trading, Ops &amp; Risk teams identified <strong>9 hero journeys</strong> &mdash; 3 workshops (3 journeys each) wrote product initiatives from real user problems. First time design drove product initiatives for this platform</li>
             <li>AI tooling embedded across documentation, synthesis, and stakeholder communication</li>
           </ul>
         </div>
       </div>
-      <div class="job-tags"><span class="jtag">Platform Thinking</span><span class="jtag">DesignOps</span><span class="jtag">Measurement Framework</span><span class="jtag">Systems Architecture</span><span class="jtag">a11y</span><span class="jtag">Regulated Markets</span><span class="jtag">Campaign Engine</span><span class="jtag">Commercial Design</span><span class="jtag">AI-augmented</span></div>
+      <div class="job-tags"><span class="jtag">iGaming</span><span class="jtag">DesignOps</span><span class="jtag">Analytics Framework</span><span class="jtag">a11y</span><span class="jtag">Regulated Markets</span><span class="jtag">BFF / Back-end</span><span class="jtag">Promotions Engine</span><span class="jtag">AI Workflow Automation</span></div>
     </div>
   </div>
 
-  <div class="job reveal">
+  <div class="job reveal full-only">
     <div class="job-meta">
       <div class="job-period">2023 &ndash; 2025</div>
       <div class="job-co">NBN Co</div>
@@ -567,7 +696,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
     </div>
   </div>
 
-  <div class="job reveal">
+  <div class="job reveal full-only">
     <div class="job-meta">
       <div class="job-period">2019 &ndash; 2023</div>
       <div class="job-co">Tabcorp</div>
@@ -603,7 +732,7 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
     </div>
   </div>
 
-  <div class="job reveal">
+  <div class="job reveal full-only">
     <div class="job-meta">
       <div class="job-period">2012 &ndash; 2019</div>
       <div class="job-co">FoodMatters &middot; Canstar &middot; Orange Digital</div>
@@ -637,6 +766,60 @@ nav.scrolled{border-bottom-color:rgba(184,136,42,.25);box-shadow:0 1px 20px rgba
       <div class="job-tags"><span class="jtag">SaaS</span><span class="jtag">A/B Testing</span><span class="jtag">Conversion</span><span class="jtag">Financial Services</span><span class="jtag">Agency</span></div>
     </div>
   </div>
+
+<!-- CONDENSED TIMELINE -->
+<div class="timeline short-only">
+  <div class="tl-item">
+    <div><div class="tl-period">2025 &ndash; Present</div><div class="tl-co">Kindred Group &middot; FDJ United</div><div class="tl-role">Product Design Manager</div></div>
+    <div>
+      <div class="tl-headline">Design operating system, platform architecture, and commercial influence across a global regulated product</div>
+      <ul class="tl-bullets">
+        <li>Built full operating model from scratch &mdash; 3-lane delivery, quality gates, design running <strong>1 quarter ahead of engineering</strong></li>
+        <li>Product surface repositioning delivered <strong>2&times; usage increase</strong>; next phase modelled at 4&times;. Business case from production data, financial triage</li>
+        <li><strong>9 component-agnostic templates</strong> govern all product surfaces; 5 variants consolidated to 1 canonical model</li>
+        <li>Spearheaded <strong>first structured research program</strong> &mdash; 10+ studies, 100+ participants each; cross-market platform agreement</li>
+        <li><strong>0&rarr;12 product initiatives</strong> driven by design in 3 quarters; AI workflow automation saving <strong>4&ndash;6 hrs/week</strong> across managers</li>
+      </ul>
+      <div class="tl-tags"><span class="jtag">Platform Thinking</span><span class="jtag">DesignOps</span><span class="jtag">Measurement Framework</span><span class="jtag">Commercial Design</span><span class="jtag">AI Automation</span></div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div><div class="tl-period">2023 &ndash; 2025</div><div class="tl-co">NBN Co</div><div class="tl-role">Lead Digital CX Designer</div></div>
+    <div>
+      <div class="tl-headline">Built the design practice for Australia&rsquo;s national broadband infrastructure company</div>
+      <ul class="tl-bullets">
+        <li>Token-based design system &mdash; <strong>+25% delivery speed, &ndash;50% inconsistencies</strong>; component changes from two sprints to hours</li>
+        <li>Customer dissatisfaction reduced from <strong>25% to 19%</strong> by redesigning key digital touchpoints</li>
+        <li>Benchmarked 4 lifecycle journeys &mdash; revealed <strong>40% task completion rate</strong>; ease-of-use lifted 3.5&rarr;5/5</li>
+      </ul>
+      <div class="tl-tags"><span class="jtag">Design System</span><span class="jtag">Token Architecture</span><span class="jtag">B2B2C</span><span class="jtag">Infrastructure</span></div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div><div class="tl-period">2019 &ndash; 2023</div><div class="tl-co">Tabcorp</div><div class="tl-role">Lead / Senior Product Designer</div></div>
+    <div>
+      <div class="tl-headline">Design leadership across Australia&rsquo;s largest consumer platform</div>
+      <ul class="tl-bullets">
+        <li>Content surface repositioning: <strong>video engagement +185%, curated selections 10&times;, editorial +385%</strong></li>
+        <li>Contextual data feature: <strong>~20% revenue-per-user increase</strong> in targeted segment</li>
+        <li>Full platform redesign under fixed deadline &mdash; <strong>zero team turnover</strong> across multiple squads</li>
+      </ul>
+      <div class="tl-tags"><span class="jtag">Consumer Platform</span><span class="jtag">Multi-squad</span><span class="jtag">ARPU</span><span class="jtag">Full Redesign</span></div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div><div class="tl-period">2012 &ndash; 2019</div><div class="tl-co">FoodMatters &middot; Canstar &middot; Orange Digital</div><div class="tl-role">Lead / Senior Designer</div></div>
+    <div>
+      <div class="tl-headline">Conversion, acquisition, and agency design across health, fintech, and retail</div>
+      <ul class="tl-bullets">
+        <li><strong>+25% mobile conversions</strong> &mdash; platform redesign and subscription product. Acquired by Gaia Inc.</li>
+        <li>Revenue-tied UX experiments at Canstar &mdash; improved outbound CTR with Head of Optimisation</li>
+        <li>18-month credit union redesign &mdash; branding, UX, retail, and in-store experience</li>
+      </ul>
+      <div class="tl-tags"><span class="jtag">SaaS</span><span class="jtag">Conversion</span><span class="jtag">Financial Services</span><span class="jtag">Agency</span></div>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- CONTACT -->
@@ -671,5 +854,86 @@ window.addEventListener('scroll', () => {
   document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 </script>
+
+<!-- SKIP LINK -->
+<a class="skip-link" href="#numbers">Skip to main content</a>
+
+<!-- MODE SWITCHER -->
+<div class="mode-switcher" role="group" aria-label="Reading mode" id="modeSwitcher">
+  <div class="mode-switcher-track" aria-hidden="true"></div>
+  <button class="mode-btn" id="btnTime" aria-pressed="true" aria-label="I have time — show full detail" tabindex="0">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5V8l2.5 2"/></svg>
+    I have time
+  </button>
+  <div class="mode-divider" aria-hidden="true"></div>
+  <button class="mode-btn" id="btnRush" aria-pressed="false" aria-label="I'm in a rush — show highlights only" tabindex="0">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/><path d="M3 4h4M3 12h4" opacity=".45"/></svg>
+    I'm in a rush
+  </button>
+</div>
+
+<script>
+(function(){
+  const switcher = document.getElementById('modeSwitcher');
+  const btnTime  = document.getElementById('btnTime');
+  const btnRush  = document.getElementById('btnRush');
+  const body     = document.body;
+  const sectionIds = ['numbers','leadership','approach','history','contact'];
+  let rushMode = false, switching = false;
+
+  function currentSection(){
+    let best=null,bestPx=-1;
+    sectionIds.forEach(id=>{
+      const el=document.getElementById(id);
+      if(!el)return;
+      const r=el.getBoundingClientRect();
+      const v=Math.min(r.bottom,window.innerHeight)-Math.max(r.top,0);
+      if(v>bestPx){bestPx=v;best=el;}
+    });
+    return best;
+  }
+
+  function activate(goRush){
+    if(switching||goRush===rushMode)return;
+    switching=true; rushMode=goRush;
+    const sec=currentSection();
+    const secTop=sec?sec.getBoundingClientRect().top:0;
+    body.classList.add('mode-switching');
+    setTimeout(()=>{
+      body.classList.toggle('rush-mode',rushMode);
+      body.classList.add('has-switched');
+      switcher.classList.toggle('rush',rushMode);
+      btnTime.setAttribute('aria-pressed',String(!rushMode));
+      btnRush.setAttribute('aria-pressed',String(rushMode));
+      body.classList.remove('mode-switching');
+      requestAnimationFrame(()=>{
+        requestAnimationFrame(()=>{
+          if(sec){const d=sec.getBoundingClientRect().top-secTop;window.scrollBy({top:d,behavior:'instant'});}
+          switching=false;
+        });
+      });
+    },160);
+  }
+
+  btnTime.addEventListener('click',()=>activate(false));
+  btnRush.addEventListener('click',()=>activate(true));
+
+  switcher.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();activate(true);btnRush.focus();}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();activate(false);btnTime.focus();}
+    else if(e.key==='Home'){e.preventDefault();activate(false);btnTime.focus();}
+    else if(e.key==='End'){e.preventDefault();activate(true);btnRush.focus();}
+  });
+
+  const live=document.createElement('div');
+  live.setAttribute('aria-live','polite');live.setAttribute('aria-atomic','true');
+  live.style.cssText='position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap';
+  document.body.appendChild(live);
+  [btnTime,btnRush].forEach(btn=>btn.addEventListener('click',()=>{
+    live.textContent=rushMode?'Rush mode: showing highlights only':'Full mode: showing complete detail';
+  }));
+})();
+</script>
+
 </body>
 </html>
